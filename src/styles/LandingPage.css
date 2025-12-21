@@ -1,0 +1,272 @@
+.landing-page {
+    min-height: 100vh;
+    background: #f5f3ff;
+}
+
+.landing-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem 0;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.logo-icon {
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: #6b7280;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: #5D4FE9;
+}
+
+.btn-header {
+    padding: 0.5rem 1.25rem;
+    background: #5D4FE9;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-header:hover {
+    background: #4D3FD9;
+}
+
+.landing-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem 4rem;
+    text-align: center;
+}
+
+.announcement {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.875rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    font-size: 0.8125rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+}
+
+.announcement-dot {
+    color: #10b981;
+    font-size: 0.5rem;
+}
+
+.main-title {
+    font-size: 3.75rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 1.5rem 0;
+    letter-spacing: -0.02em;
+}
+
+.title-dark {
+    color: #3D3B8E;
+}
+
+.title-gray {
+    color: #9ca3af;
+}
+
+.main-description {
+    font-size: 1.0625rem;
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0 0 2.5rem 0;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 0.875rem 1.75rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+}
+
+.btn-primary {
+    background: #5D4FE9;
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(93, 79, 233, 0.3);
+    background: #4D3FD9;
+}
+
+.btn-secondary {
+    background: white;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+}
+
+.btn-secondary:hover {
+    border-color: #d1d5db;
+    background: #f9fafb;
+}
+
+/* Browser Mockup */
+.browser-mockup {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.browser-chrome {
+    background: #f3f4f6;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.chrome-dots {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chrome-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d1d5db;
+}
+
+.browser-body {
+    padding: 3rem 2.5rem 4rem;
+    background: #fafafa;
+}
+
+.mockup-search-bar {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.mockup-search-icon {
+    font-size: 1.25rem;
+    color: #5D4FE9;
+}
+
+.mockup-search-line {
+    flex: 1;
+    height: 18px;
+    background: linear-gradient(90deg, #e5e7eb 0%, #f3f4f6 50%, #e5e7eb 100%);
+    background-size: 200% 100%;
+    border-radius: 4px;
+    animation: shimmer 2s infinite ease-in-out;
+}
+
+.mockup-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.mockup-card {
+    background: white;
+    border-radius: 10px;
+    height: 140px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .nav-links a {
+        display: none;
+    }
+
+    .browser-body {
+        padding: 2rem 1.5rem;
+    }
+
+    .mockup-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .main-title {
+        font-size: 2rem;
+    }
+
+    .main-description {
+        font-size: 0.9375rem;
+    }
+
+    .landing-main {
+        padding: 2rem 1rem;
+    }
+}

@@ -1,0 +1,112 @@
+.search-stages {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.stage-pending {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+}
+
+.stage-loading {
+    background: #eff6ff;
+    border: 1px solid #3b82f6;
+}
+
+.stage-completed {
+    background: #f0fdf4;
+    border: 1px solid #10b981;
+}
+
+.stage-failed {
+    background: #fef2f2;
+    border: 1px solid #ef4444;
+}
+
+.stage-icon {
+    font-size: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stage-pending .stage-icon {
+    color: #9ca3af;
+}
+
+.stage-loading .stage-icon {
+    color: #3b82f6;
+    animation: spin 1s linear infinite;
+}
+
+.stage-completed .stage-icon {
+    color: #10b981;
+}
+
+.stage-failed .stage-icon {
+    color: #ef4444;
+}
+
+.stage-content {
+    flex: 1;
+}
+
+.stage-name {
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.875rem;
+}
+
+.stage-loader {
+    margin-top: 0.5rem;
+    height: 4px;
+    background: #e5e7eb;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.stage-loader::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 50%;
+    background: #3b82f6;
+    animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loading {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(300%);
+    }
+}
