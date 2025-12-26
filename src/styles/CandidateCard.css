@@ -1,103 +1,253 @@
 .candidate-card {
     background: #ffffff;
+    border: 1px solid #eef2f6;
     border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: all 0.3s ease;
     cursor: pointer;
-    transition: all 0.3s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .candidate-card:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border-color: #5542f633;
+    transform: translateY(-4px);
 }
 
-.card-header {
+.card-top {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.profile-section {
+    display: flex;
+    gap: 16px;
+}
+
+.avatar-container {
+    position: relative;
 }
 
 .candidate-avatar {
-    width: 60px;
-    height: 60px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.candidate-info {
-    flex: 1;
+.status-indicator {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    background: #10b981;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
+
+.candidate-basic-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .candidate-name {
-    font-size: 1.125rem;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 700;
     color: #111827;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.25rem;
-}
-
-.availability-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+    margin: 0;
 }
 
 .candidate-title {
-    font-size: 0.875rem;
+    font-size: 14px;
     color: #6b7280;
-    margin-bottom: 0.25rem;
+    margin: 0;
 }
 
-.candidate-company {
-    font-size: 0.875rem;
-    color: #9ca3af;
-}
-
-.card-details {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.detail-item {
+.candidate-meta {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    color: #6b7280;
+    gap: 12px;
+    margin-top: 4px;
 }
 
-.detail-icon {
-    font-size: 1rem;
+.exp-badge {
+    background: #f3f4ff;
+    color: #5542f6;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
 }
 
-.match-percent {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
+.loc-text {
+    font-size: 12px;
+    color: #9ca3af;
 }
 
 .card-actions {
     display: flex;
-    gap: 0.5rem;
-    justify-content: flex-end;
+    gap: 8px;
+    align-items: center;
 }
 
-.action-btn {
-    width: 36px;
-    height: 36px;
-    border: 1px solid #e5e7eb;
-    background: #ffffff;
+.btn-action {
+    background: white;
+    border: 1px solid #eef2f6;
     border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    font-size: 1.125rem;
+    font-size: 14px;
     transition: all 0.2s;
 }
 
-.action-btn:hover {
+.btn-action:hover {
     background: #f9fafb;
     border-color: #d1d5db;
+}
+
+.btn-heart {
+    background: white;
+    border: 1px solid #eef2f6;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #d1d5db;
+}
+
+.btn-heart:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.btn-heart.active {
+    background: #f3f4ff;
+    border-color: #5542f6;
+    color: #5542f6;
+}
+
+.card-stats {
+    display: flex;
+    gap: 12px;
+}
+
+.stat-box {
+    flex: 1;
+    background: #f9fafb;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.stat-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.stat-label {
+    font-size: 9px;
+    font-weight: 700;
+    color: #9ca3af;
+    letter-spacing: 0.05em;
+}
+
+.match-score .stat-value {
+    color: #111827;
+}
+
+.card-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-chip {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #4b5563;
+}
+
+.contact-info {
+    background: #f0fdf4;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.contact-item {
+    font-size: 12px;
+    color: #166534;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icon {
+    font-size: 18px;
+    color: #9ca3af;
+    cursor: pointer;
+}
+
+.social-icon.linkedin {
+    font-weight: 700;
+    color: #0077b5;
+}
+
+.btn-view-profile {
+    background: none;
+    border: none;
+    color: #5542f6;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-view-profile:hover {
+    text-decoration: underline;
 }

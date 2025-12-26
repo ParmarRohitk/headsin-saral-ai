@@ -11,7 +11,9 @@ export interface Candidate {
     image_url?: string;
     about?: string;
     contact_locked: boolean;
+    is_shortlisted?: boolean;
     match_percent?: number;
+    skills?: string[];
     created_at: string;
     updated_at: string;
 }

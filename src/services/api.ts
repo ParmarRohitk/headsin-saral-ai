@@ -2,7 +2,7 @@ import axios from 'axios';
 import { SearchFilters, CandidateDetail } from '../types/candidate';
 
 // NOTE: Configure API base URL from environment or default to localhost
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000/api/v1';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api/v1';
 
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -30,10 +30,10 @@ export const candidateApi = {
         return response.data;
     },
 
-    // Get search results with pagination
-    getSearchResults: async (searchId: number, page: number = 1, limit: number = 12) => {
+    // Get search results with pagination and filters
+    getSearchResults: async (searchId: number, page: number = 1, limit: number = 12, filters?: SearchFilters) => {
         const response = await api.get(`/candidates/search/${searchId}/results`, {
-            params: { page, limit },
+            params: { page, limit, ...filters },
         });
         return response.data;
     },
@@ -55,6 +55,32 @@ export const candidateApi = {
         const response = await api.post(`/candidates/${candidateId}/shortlist`);
         return response.data;
     },
+
+    // Get shortlisted candidates
+    getShortlisted: async () => {
+        const response = await api.get('/candidates/shortlist');
+        return response.data;
+    },
+};
+
+// NOTE: API functions for campaigns module
+export const campaignApi = {
+    getAll: async () => {
+        const response = await api.get('/campaigns');
+        return response.data;
+    },
+    getSequences: async (id: number) => {
+        const response = await api.get(`/campaigns/${id}/sequences`);
+        return response.data;
+    },
+    getAnalytics: async (id: number) => {
+        const response = await api.get(`/campaigns/${id}/analytics`);
+        return response.data;
+    },
+    create: async (name: string, type: 'email' | 'linkedin') => {
+        const response = await api.post('/campaigns', { name, type });
+        return response.data;
+    }
 };
 
 // NOTE: API functions for credits

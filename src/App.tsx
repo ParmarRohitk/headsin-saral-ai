@@ -1,16 +1,58 @@
 import React, { useState } from 'react';
 import LandingPage from './pages/LandingPage';
 import SearchPage from './pages/SearchPage';
+import CampaignsPage from './pages/CampaignsPage';
+import Sidebar from './components/Sidebar';
+import ErrorBoundary from './components/ErrorBoundary';
 import './App.css';
 
 function App() {
-    const [showSearch, setShowSearch] = useState(false);
+    const [isAppMode, setIsAppMode] = useState(false);
+    return (
+        <ErrorBoundary>
+            <AppContent isAppMode={isAppMode} setIsAppMode={setIsAppMode} />
+        </ErrorBoundary>
+    );
+}
 
-    if (showSearch) {
-        return <SearchPage />;
+function AppContent({ isAppMode, setIsAppMode }: { isAppMode: boolean, setIsAppMode: (v: boolean) => void }) {
+    const [currentPage, setCurrentPage] = useState<'search' | 'campaigns'>('search');
+    const [credits, setCredits] = useState(485);
+    const [sidebarVisible, setSidebarVisible] = useState(false);
+
+    const handleStart = () => {
+        setIsAppMode(true);
+    };
+
+    if (!isAppMode) {
+        return <LandingPage onStartSearch={handleStart} />;
     }
 
-    return <LandingPage onStartSearch={() => setShowSearch(true)} />;
+    const showSidebar = currentPage === 'campaigns' || sidebarVisible;
+
+    return (
+        <div className="search-page-wrapper">
+            {showSidebar && (
+                <Sidebar
+                    credits={credits}
+                    activePage={currentPage}
+                    onNavigate={(page: 'search' | 'campaigns') => setCurrentPage(page)}
+                />
+            )}
+
+            <div className={`search-page-content ${!showSidebar ? 'full-width' : ''}`}>
+                {currentPage === 'search' ? (
+                    <SearchPage
+                        onUpdateCredits={setCredits}
+                        hideSidebar={!showSidebar}
+                        onSidebarVisibilityChange={setSidebarVisible}
+                    />
+                ) : (
+                    <CampaignsPage />
+                )}
+            </div>
+        </div>
+    );
 }
 
 export default App;

@@ -1,0 +1,223 @@
+.campaigns-page {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.stat-card {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid #eef2f6;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.stat-icon {
+    font-size: 20px;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.stat-footer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.trend-up {
+    color: #16a34a;
+}
+
+.trend-down {
+    color: #dc2626;
+}
+
+.campaigns-content {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #eef2f6;
+    overflow: hidden;
+}
+
+.campaigns-header {
+    padding: 24px;
+    border-bottom: 1px solid #eef2f6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tab-container {
+    display: flex;
+    gap: 24px;
+}
+
+.tab {
+    font-size: 15px;
+    font-weight: 600;
+    color: #6b7280;
+    padding-bottom: 24px;
+    margin-bottom: -25px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.tab.active {
+    color: #5542f6;
+    border-color: #5542f6;
+}
+
+.campaign-list {
+    width: 100%;
+}
+
+.campaign-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 100px;
+    padding: 20px 24px;
+    border-bottom: 1px solid #f9fafb;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.campaign-row:hover {
+    background: #f9fafb;
+}
+
+.campaign-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.campaign-name {
+    font-weight: 600;
+    color: #111827;
+}
+
+.campaign-type {
+    font-size: 12px;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.type-tag {
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #f3f4f6;
+    font-weight: 700;
+    font-size: 10px;
+}
+
+.status-tag {
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.status-active {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.status-paused {
+    background: #fffbeb;
+    color: #d97706;
+}
+
+.status-draft {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+.row-stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.row-stat-value {
+    font-weight: 600;
+    color: #111827;
+}
+
+.row-stat-label {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.btn-view {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #eef2f6;
+    background: white;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+}
+
+.btn-view:hover {
+    background: #f3f4f6;
+}
+
+/* Analytics Chart Container */
+.analytics-section {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid #eef2f6;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chart-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.chart-container {
+    height: 300px;
+    width: 100%;
+}
