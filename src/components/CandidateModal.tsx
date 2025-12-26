@@ -54,33 +54,59 @@ const CandidateModal: React.FC<CandidateModalProps> = ({
                 </div>
 
                 <div className="modal-body">
-                    {candidate.strengths && candidate.strengths.length > 0 && (
-                        <section className="modal-section">
-                            <h3>Strengths</h3>
-                            <ul>
-                                {candidate.strengths.map((strength, index) => (
-                                    <li key={index}>{strength}</li>
-                                ))}
-                            </ul>
-                        </section>
-                    )}
-
-                    {candidate.areas_to_probe && candidate.areas_to_probe.length > 0 && (
-                        <section className="modal-section">
-                            <h3>Areas to Probe</h3>
-                            <ul>
-                                {candidate.areas_to_probe.map((area, index) => (
-                                    <li key={index}>{area}</li>
-                                ))}
-                            </ul>
-                        </section>
-                    )}
-
                     {candidate.ai_verdict && (
-                        <div className="ai-verdict">
-                            <strong>AI Verdict:</strong> {candidate.ai_verdict}
+                        <div className="ai-verdict-banner">
+                            <span className="verdict-icon">✨</span>
+                            <div className="verdict-content">
+                                <span className="verdict-label">AI VERDICT</span>
+                                <p className="verdict-text">{candidate.ai_verdict}</p>
+                            </div>
                         </div>
                     )}
+
+                    <div className="modal-grid-two">
+                        {candidate.strengths && candidate.strengths.length > 0 && (
+                            <section className="modal-section">
+                                <h3>Strengths</h3>
+                                <div className="strengths-list">
+                                    {candidate.strengths.map((strength, index) => (
+                                        <div key={index} className="strength-item">
+                                            <span className="check-icon">✓</span> {strength}
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
+
+                        {candidate.areas_to_probe && candidate.areas_to_probe.length > 0 && (
+                            <section className="modal-section">
+                                <h3>Areas to Probe</h3>
+                                <div className="probes-list">
+                                    {candidate.areas_to_probe.map((area, index) => (
+                                        <div key={index} className="probe-item">
+                                            <span className="probe-icon">?</span> {area}
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
+                    </div>
+
+                    <section className="modal-section">
+                        <h3>Career Timeline</h3>
+                        <div className="career-timeline">
+                            <div className="timeline-line"></div>
+                            {(candidate.experience || []).map((exp, idx) => (
+                                <div key={exp.id} className="timeline-dot-wrapper">
+                                    <div className="timeline-dot"></div>
+                                    <div className="timeline-content">
+                                        <span className="timeline-date">{exp.start_date.split('-')[0]}</span>
+                                        <span className="timeline-title">{exp.company}</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
 
                     {candidate.experience && candidate.experience.length > 0 && (
                         <section className="modal-section">

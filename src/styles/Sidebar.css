@@ -1,0 +1,170 @@
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background-color: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+    padding-left: 8px;
+}
+
+.logo-icon {
+    font-size: 24px;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+}
+
+.btn-new-project {
+    background-color: #5542f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 32px;
+    transition: background-color 0.2s;
+}
+
+.btn-new-project:hover {
+    background-color: #4335c9;
+}
+
+.plus-icon {
+    font-size: 18px;
+}
+
+.section-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #9ca3af;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+    padding-left: 8px;
+}
+
+.nav-section {
+    margin-bottom: 32px;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #4b5563;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 4px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-item:hover {
+    background-color: #f9fafb;
+    color: #111827;
+}
+
+.nav-item.active {
+    background-color: #f3f4ff;
+    color: #5542f6;
+}
+
+.item-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #5542f6;
+    margin-right: 12px;
+}
+
+.item-dot.gray {
+    background-color: #d1d5db;
+}
+
+.item-count {
+    margin-left: auto;
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+.nav-icon {
+    margin-right: 12px;
+    font-size: 16px;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+}
+
+.credits-widget {
+    background-color: #f9fafb;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 24px;
+}
+
+.credits-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+.credits-bar {
+    height: 6px;
+    background-color: #e5e7eb;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.credits-progress {
+    height: 100%;
+    background-color: #5542f6;
+}
+
+.settings-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #4b5563;
+    cursor: pointer;
+    padding-left: 8px;
+}
+
+.settings-link:hover {
+    color: #111827;
+}
