@@ -77,6 +77,12 @@
     transition: all 0.3s;
 }
 
+.stage-time {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-left: 0.5rem;
+}
+
 .stage-loading .stage-name {
     color: #000000;
     font-weight: 600;

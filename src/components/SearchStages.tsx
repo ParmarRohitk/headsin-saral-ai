@@ -37,13 +37,16 @@ const SearchStages: React.FC<SearchStagesProps> = ({ stages }) => {
                 </div>
                 <h2 className="loading-title">Finding best matches...</h2>
             </div>
-            
+
             <div className="search-stages-list">
                 {stages.map((stage, index) => (
                     <div key={index} className={`stage-card stage-${stage.status}`}>
                         <div className="stage-icon-container">{getStatusIcon(stage.status)}</div>
                         <div className="stage-content">
                             <span className="stage-name">{stage.name}</span>
+                            {stage.status === 'completed' && stage.completed_at && (
+                                <span className="stage-time">completed at {new Date(stage.completed_at).toLocaleTimeString()}</span>
+                            )}
                         </div>
                     </div>
                 ))}

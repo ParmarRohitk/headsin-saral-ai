@@ -19,6 +19,7 @@ interface CandidateGridProps {
     onShortlist?: (candidate: Candidate) => void;
     onLike?: (candidate: Candidate) => void;
     onDislike?: (candidate: Candidate) => void;
+    lastUpdated?: Date | null;
 }
 
 const CandidateGrid: React.FC<CandidateGridProps> = ({
@@ -32,6 +33,7 @@ const CandidateGrid: React.FC<CandidateGridProps> = ({
     onShortlist,
     onLike,
     onDislike,
+    lastUpdated,
 }) => {
     if (isLoading) {
         return (
@@ -71,6 +73,16 @@ const CandidateGrid: React.FC<CandidateGridProps> = ({
                         <option value="8">Exp: 8+ yrs</option>
                     </select>
                     <div className="filter-input-wrapper">
+                        <span className="input-icon">👤</span>
+                        <input
+                            type="text"
+                            placeholder="Filter by role..."
+                            className="filter-input"
+                            value={filters.role || ''}
+                            onChange={(e) => onFilterChange?.({ ...filters, role: e.target.value })}
+                        />
+                    </div>
+                    <div className="filter-input-wrapper">
                         <span className="input-icon">📍</span>
                         <input
                             type="text"
@@ -80,7 +92,22 @@ const CandidateGrid: React.FC<CandidateGridProps> = ({
                             onChange={(e) => onFilterChange?.({ ...filters, location: e.target.value })}
                         />
                     </div>
+                    <div className="filter-input-wrapper">
+                        <span className="input-icon">🛠️</span>
+                        <input
+                            type="text"
+                            placeholder="Filter by skills (comma-separated)..."
+                            className="filter-input"
+                            value={filters.skills?.join(', ') || ''}
+                            onChange={(e) => onFilterChange?.({ ...filters, skills: e.target.value ? e.target.value.split(',').map(s => s.trim()) : undefined })}
+                        />
+                    </div>
                 </div>
+                {lastUpdated && (
+                    <div className="last-updated">
+                        Last updated: {lastUpdated.toLocaleTimeString()}
+                    </div>
+                )}
             </div>
 
             <div className="candidate-grid">

@@ -19,6 +19,8 @@ const SearchPage: React.FC<SearchPageProps> = ({ onUpdateCredits, hideSidebar, o
     const [searchId, setSearchId] = useState<number | null>(null);
     const [stages, setStages] = useState<SearchStage[]>([]);
     const [candidates, setCandidates] = useState<Candidate[]>([]);
+    const [allCandidates, setAllCandidates] = useState<Candidate[]>([]);
+    const [filteredCandidates, setFilteredCandidates] = useState<Candidate[]>([]);
     const [isResultsLoading, setIsResultsLoading] = useState(false);
     const [selectedCandidate, setSelectedCandidate] = useState<CandidateDetail | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,6 +34,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ onUpdateCredits, hideSidebar, o
     }, [isSearching, candidates.length, activeTab, onSidebarVisibilityChange]);
     const [filters, setFilters] = useState<SearchFilters>({});
     const [lastQuery, setLastQuery] = useState('');
+    const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
     const [pagination, setPagination] = useState({
         page: 1,
         limit: 12,
@@ -72,10 +75,19 @@ const SearchPage: React.FC<SearchPageProps> = ({ onUpdateCredits, hideSidebar, o
     const fetchResults = React.useCallback(async (sid: number, page: number, currentFilters = filters) => {
         setIsResultsLoading(true);
         try {
-            const response = await candidateApi.getSearchResults(sid, page, 12, currentFilters);
+            const response = await candidateApi.getSearchResults(sid, 1, 1000, currentFilters);
             if (response.success) {
-                setCandidates(response.data.candidates);
-                setPagination(response.data.pagination);
+                const all = response.data.candidates;
+                setAllCandidates(all);
+                setFilteredCandidates(all);
+                setCandidates(all.slice((page - 1) * 12, page * 12));
+                setPagination({
+                    page,
+                    limit: 12,
+                    total: all.length,
+                    totalPages: Math.ceil(all.length / 12),
+                });
+                setLastUpdated(new Date());
             }
         } catch (error) {
             console.error('Error fetching results:', error);
@@ -150,11 +162,31 @@ const SearchPage: React.FC<SearchPageProps> = ({ onUpdateCredits, hideSidebar, o
 
     const handleFilterChange = (newFilters: SearchFilters) => {
         setFilters(newFilters);
-        if (searchId && activeTab === 'candidates') {
-            fetchResults(searchId, 1, newFilters);
-        } else if (lastQuery && activeTab === 'candidates') {
-            handleSearch(lastQuery);
-        }
+        const filtered = allCandidates.filter(candidate => {
+            if (newFilters.role && !candidate.title?.toLowerCase().includes(newFilters.role.toLowerCase())) return false;
+            if (newFilters.location && !candidate.location?.toLowerCase().includes(newFilters.location.toLowerCase())) return false;
+            if (newFilters.experience_min && (candidate.experience_years || 0) < newFilters.experience_min) return false;
+            if (newFilters.skills && newFilters.skills.length > 0) {
+                const candidateSkills = candidate.skills || [];
+                if (!newFilters.skills.some(skill => candidateSkills.some(cs => cs.toLowerCase().includes(skill.toLowerCase())))) return false;
+            }
+            return true;
+        });
+        setFilteredCandidates(filtered);
+        setCandidates(filtered.slice(0, 12));
+        setPagination(prev => ({
+            ...prev,
+            page: 1,
+            total: filtered.length,
+            totalPages: Math.ceil(filtered.length / 12),
+        }));
+        setLastUpdated(new Date());
+    };
+
+    const handlePageChange = (page: number) => {
+        setPagination(prev => ({ ...prev, page }));
+        setCandidates(filteredCandidates.slice((page - 1) * 12, page * 12));
+        setLastUpdated(new Date());
     };
 
     const handleCandidateClick = async (candidate: Candidate) => {
@@ -193,12 +225,6 @@ const SearchPage: React.FC<SearchPageProps> = ({ onUpdateCredits, hideSidebar, o
     const handleDislike = (candidate: Candidate) => {
         // For now, just remove from the current results view
         setCandidates(prev => prev.filter(c => c.id !== candidate.id));
-    };
-
-    const handlePageChange = (page: number) => {
-        if (searchId) {
-            fetchResults(searchId, page);
-        }
     };
 
     const content = (
@@ -278,6 +304,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ onUpdateCredits, hideSidebar, o
                             onShortlist={handleShortlist}
                             onLike={handleLike}
                             onDislike={handleDislike}
+                            lastUpdated={lastUpdated}
                         />
                     </div>
                 )}

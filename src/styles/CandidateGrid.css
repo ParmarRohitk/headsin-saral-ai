@@ -18,6 +18,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .filter-icon {
@@ -72,6 +73,13 @@
 .filter-input:focus {
     border-color: #5542f6;
     background: white;
+}
+
+.last-updated {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 8px;
+    text-align: right;
 }
 
 .candidate-grid {
