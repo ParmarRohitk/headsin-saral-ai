@@ -54,7 +54,7 @@ const CampaignsPage: React.FC = () => {
 
     const handleCreateCampaign = async (data: any) => {
         try {
-            const response = await campaignApi.create(data.name, activeTab);
+            const response = await campaignApi.create(data.name, activeTab, data.steps);
             if (response.success) {
                 setIsModalOpen(false);
                 fetchCampaigns();
@@ -136,13 +136,21 @@ const CampaignsPage: React.FC = () => {
                             LinkedIn Campaigns
                         </div>
                     </div>
-                    <button
-                        className="btn-new-project"
-                        style={{ padding: '10px 20px', fontSize: '14px' }}
-                        onClick={() => setIsModalOpen(true)}
-                    >
-                        + Create Campaign
-                    </button>
+                    <div style={{ display: 'flex', gap: '12px' }}>
+                        <button
+                            className="btn-view"
+                            onClick={() => fetchCampaigns()}
+                        >
+                            🔄 Refresh
+                        </button>
+                        <button
+                            className="btn-new-project"
+                            style={{ padding: '10px 20px', fontSize: '14px' }}
+                            onClick={() => setIsModalOpen(true)}
+                        >
+                            + Create Campaign
+                        </button>
+                    </div>
                 </div>
 
                 <div className="campaign-list">

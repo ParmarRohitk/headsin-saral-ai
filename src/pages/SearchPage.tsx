@@ -3,18 +3,20 @@ import SearchBar from '../components/SearchBar';
 import SearchStages from '../components/SearchStages';
 import CandidateGrid from '../components/CandidateGrid';
 import CandidateModal from '../components/CandidateModal';
+import CreditConfirmModal from '../components/CreditConfirmModal';
 import { candidateApi, creditApi } from '../services/api';
 import { Candidate, CandidateDetail, SearchStage, SearchFilters } from '../types/candidate';
 import '../styles/SearchPage.css';
 
 interface SearchPageProps {
+    credits: number | null;
     onUpdateCredits?: (credits: number) => void;
     hideSidebar?: boolean;
     onSearchStateChange?: (isSearching: boolean) => void;
     onSidebarVisibilityChange?: (isVisible: boolean) => void;
 }
 
-const SearchPage: React.FC<SearchPageProps> = ({ onUpdateCredits, hideSidebar, onSearchStateChange, onSidebarVisibilityChange }) => {
+const SearchPage: React.FC<SearchPageProps> = ({ credits, onUpdateCredits, hideSidebar, onSearchStateChange, onSidebarVisibilityChange }) => {
     const [isSearching, setIsSearching] = useState(false);
     const [searchId, setSearchId] = useState<number | null>(null);
     const [stages, setStages] = useState<SearchStage[]>([]);
@@ -25,6 +27,8 @@ const SearchPage: React.FC<SearchPageProps> = ({ onUpdateCredits, hideSidebar, o
     const [selectedCandidate, setSelectedCandidate] = useState<CandidateDetail | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [activeTab, setActiveTab] = useState<'candidates' | 'shortlist'>('candidates');
+    const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+    const [pendingQuery, setPendingQuery] = useState('');
 
     // Determine sidebar visibility
     useEffect(() => {
@@ -125,7 +129,9 @@ const SearchPage: React.FC<SearchPageProps> = ({ onUpdateCredits, hideSidebar, o
                         fetchResults(searchId, 1);
                         // Refresh credits after search
                         const credRes = await creditApi.getUserCredits();
-                        if (credRes.success && onUpdateCredits) onUpdateCredits(credRes.data.available_credits);
+                        if (credRes.success && onUpdateCredits) {
+                            onUpdateCredits(credRes.data.available_credits);
+                        }
                     }
                 }
             } catch (error) {
@@ -138,7 +144,14 @@ const SearchPage: React.FC<SearchPageProps> = ({ onUpdateCredits, hideSidebar, o
         return () => clearInterval(pollInterval);
     }, [searchId, onUpdateCredits, fetchResults]);
 
-    const handleSearch = async (query: string) => {
+    const handleSearch = (query: string) => {
+        setPendingQuery(query);
+        setIsConfirmModalOpen(true);
+    };
+
+    const confirmSearch = async () => {
+        setIsConfirmModalOpen(false);
+        const query = pendingQuery;
         setLastQuery(query);
         setIsSearching(true);
         setCandidates([]);
@@ -232,24 +245,18 @@ const SearchPage: React.FC<SearchPageProps> = ({ onUpdateCredits, hideSidebar, o
             {/* Show Header only if NOT searching */}
             {!isSearching && (
                 <header className="page-header">
-                    <div className="header-left">
-                        <h2 className="page-title">{activeTab === 'shortlist' ? 'Shortlisted Candidates' : 'New AI Search'}</h2>
-                        <span className="status-badge active">Active</span>
+                    <div className="nav-left">
+                        <div className="nav-icon-wrapper">
+                            <span className="logo-square"></span>
+                        </div>
+                        <div className="nav-profile-tag">
+                            Frontend Lead
+                        </div>
                     </div>
-                    <div className="header-right">
-                        <div className="tab-switcher">
-                            <button
-                                className={`tab-btn ${activeTab === 'candidates' ? 'active' : ''}`}
-                                onClick={() => setActiveTab('candidates')}
-                            >
-                                Candidates
-                            </button>
-                            <button
-                                className={`tab-btn ${activeTab === 'shortlist' ? 'active' : ''}`}
-                                onClick={() => setActiveTab('shortlist')}
-                            >
-                                Shortlist
-                            </button>
+                    <div className="nav-right">
+                        <div className="credit-pill">
+                            <span className="flash-icon">⚡</span>
+                            <span className="credit-count">{credits !== null ? credits : '-'} Credits</span>
                         </div>
                     </div>
                 </header>
@@ -325,6 +332,14 @@ const SearchPage: React.FC<SearchPageProps> = ({ onUpdateCredits, hideSidebar, o
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
             />
+
+            <CreditConfirmModal
+                isOpen={isConfirmModalOpen}
+                onClose={() => setIsConfirmModalOpen(false)}
+                onConfirm={confirmSearch}
+                cost={10}
+                availableCredits={credits || 0}
+            />
         </>
     );
 
@@ -334,6 +349,12 @@ const SearchPage: React.FC<SearchPageProps> = ({ onUpdateCredits, hideSidebar, o
 
     return (
         <div className="search-page-wrapper">
+            {/* Background Decorations */}
+            <div className="search-bg-decorations">
+                <div className="bg-gradient-top"></div>
+                <div className="bg-glow-right"></div>
+                <div className="bg-glow-left"></div>
+            </div>
             {content}
         </div>
     );
