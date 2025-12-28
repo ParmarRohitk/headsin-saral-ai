@@ -28,7 +28,7 @@ function AppContent({ isAppMode, setIsAppMode }: { isAppMode: boolean, setIsAppM
         return <LandingPage onStartSearch={handleStart} />;
     }
 
-    const showSidebar = currentPage === 'campaigns' || sidebarVisible;
+    const showSidebar = true; // Sidebar is persistent in dashboard mode
 
     return (
         <div className="search-page-wrapper">

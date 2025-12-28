@@ -50,64 +50,41 @@ const CandidateGrid: React.FC<CandidateGridProps> = ({
         <div className="candidate-results-container">
             <div className="results-header-filters">
                 <div className="filter-group">
-                    <span className="filter-icon">⏳</span>
+                    <span className="filter-icon-main">▽</span>
                     <span className="filter-label">Filters:</span>
-                    <select
-                        className="filter-dropdown"
-                        defaultValue=""
-                    >
-                        <option value="">Score: Any</option>
-                        <option value="90">Score: 90%+</option>
-                        <option value="80">Score: 80%+</option>
-                        <option value="70">Score: 70%+</option>
-                    </select>
-                    <select
-                        className="filter-dropdown"
-                        value={filters.experience_min || ''}
-                        onChange={(e) => onFilterChange?.({ ...filters, experience_min: e.target.value ? parseInt(e.target.value) : undefined })}
-                    >
-                        <option value="">Exp: Any</option>
-                        <option value="1">Exp: 1+ yrs</option>
-                        <option value="3">Exp: 3+ yrs</option>
-                        <option value="5">Exp: 5+ yrs</option>
-                        <option value="8">Exp: 8+ yrs</option>
-                    </select>
-                    <div className="filter-input-wrapper">
-                        <span className="input-icon">👤</span>
-                        <input
-                            type="text"
-                            placeholder="Filter by role..."
-                            className="filter-input"
-                            value={filters.role || ''}
-                            onChange={(e) => onFilterChange?.({ ...filters, role: e.target.value })}
-                        />
+                    <div className="filter-dropdown-wrapper">
+                        <select
+                            className="filter-select-custom"
+                            defaultValue=""
+                        >
+                            <option value="">Score &gt; Any</option>
+                            <option value="90">Score &gt; 90%</option>
+                            <option value="80">Score &gt; 80%</option>
+                        </select>
                     </div>
-                    <div className="filter-input-wrapper">
-                        <span className="input-icon">📍</span>
+                    <div className="filter-dropdown-wrapper">
+                        <select
+                            className="filter-select-custom"
+                            value={filters.experience_min || ''}
+                            onChange={(e) => onFilterChange?.({ ...filters, experience_min: e.target.value ? parseInt(e.target.value) : undefined })}
+                        >
+                            <option value="">Exp &gt; Any</option>
+                            <option value="1">Exp &gt; 1+ yrs</option>
+                            <option value="3">Exp &gt; 3+ yrs</option>
+                            <option value="5">Exp &gt; 5+ yrs</option>
+                        </select>
+                    </div>
+                    <div className="filter-location-wrapper">
+                        <span className="loc-search-icon">📍</span>
                         <input
                             type="text"
                             placeholder="Filter by location..."
-                            className="filter-input"
+                            className="filter-location-input"
                             value={filters.location || ''}
                             onChange={(e) => onFilterChange?.({ ...filters, location: e.target.value })}
                         />
                     </div>
-                    <div className="filter-input-wrapper">
-                        <span className="input-icon">🛠️</span>
-                        <input
-                            type="text"
-                            placeholder="Filter by skills (comma-separated)..."
-                            className="filter-input"
-                            value={filters.skills?.join(', ') || ''}
-                            onChange={(e) => onFilterChange?.({ ...filters, skills: e.target.value ? e.target.value.split(',').map(s => s.trim()) : undefined })}
-                        />
-                    </div>
                 </div>
-                {lastUpdated && (
-                    <div className="last-updated">
-                        Last updated: {lastUpdated.toLocaleTimeString()}
-                    </div>
-                )}
             </div>
 
             <div className="candidate-grid">

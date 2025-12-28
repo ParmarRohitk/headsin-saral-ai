@@ -14,16 +14,24 @@ const SearchStages: React.FC<SearchStagesProps> = ({ stages }) => {
                 return (
                     <div className="status-icon-check">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </div>
                 );
             case 'loading':
-                return <div className="status-icon-loading"><div className="inner-dot"></div></div>;
-            case 'failed':
-                return '✗';
+                return (
+                    <div className="status-icon-active">
+                        <div className="radio-outer">
+                            <div className="radio-inner"></div>
+                        </div>
+                    </div>
+                );
             default:
-                return <div className="status-icon-pending"></div>;
+                return (
+                    <div className="status-icon-pending">
+                        <div className="radio-outer-pending"></div>
+                    </div>
+                );
         }
     };
 
@@ -31,9 +39,7 @@ const SearchStages: React.FC<SearchStagesProps> = ({ stages }) => {
         <div className="search-loading-container">
             <div className="central-spinner-wrapper">
                 <div className="main-spinner">
-                    <svg viewBox="0 0 50 50" className="spinner-svg">
-                        <circle className="path" cx="25" cy="25" r="20" fill="none" strokeWidth="4"></circle>
-                    </svg>
+                    <div className="ring-spinner"></div>
                 </div>
                 <h2 className="loading-title">Finding best matches...</h2>
             </div>
@@ -44,9 +50,6 @@ const SearchStages: React.FC<SearchStagesProps> = ({ stages }) => {
                         <div className="stage-icon-container">{getStatusIcon(stage.status)}</div>
                         <div className="stage-content">
                             <span className="stage-name">{stage.name}</span>
-                            {stage.status === 'completed' && stage.completed_at && (
-                                <span className="stage-time">completed at {new Date(stage.completed_at).toLocaleTimeString()}</span>
-                            )}
                         </div>
                     </div>
                 ))}

@@ -1,157 +1,192 @@
 .sidebar {
-    width: 260px;
+    width: 280px;
     height: 100vh;
-    background-color: #ffffff;
-    border-right: 1px solid #e5e7eb;
+    background: #ffffff;
+    border-right: 1px solid #f1f5f9;
     display: flex;
     flex-direction: column;
-    padding: 24px 16px;
-    position: fixed;
-    left: 0;
+    padding: 24px;
+    position: sticky;
     top: 0;
-    z-index: 100;
 }
 
 .sidebar-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     margin-bottom: 32px;
-    padding-left: 8px;
 }
 
 .logo-icon {
-    font-size: 24px;
+    width: 32px;
+    height: 32px;
+    background: #5542f6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
 }
 
 .logo-text {
     font-size: 20px;
-    font-weight: 700;
-    color: #111827;
+    font-weight: 800;
+    color: #1e1b4b;
     letter-spacing: -0.02em;
 }
 
 .btn-new-project {
-    background-color: #5542f6;
+    width: 100%;
+    background: #5542f6;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 12px;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    width: 100%;
-    cursor: pointer;
     margin-bottom: 32px;
-    transition: background-color 0.2s;
 }
 
 .btn-new-project:hover {
-    background-color: #4335c9;
+    background: #4338ca;
 }
 
-.plus-icon {
-    font-size: 18px;
+.sidebar-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
 
 .section-title {
-    font-size: 11px;
-    font-weight: 600;
-    color: #9ca3af;
+    font-size: 12px;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-bottom: 16px;
     letter-spacing: 0.05em;
-    margin-bottom: 12px;
-    padding-left: 8px;
 }
 
-.nav-section {
-    margin-bottom: 32px;
+.nav-search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+}
+
+.search-icon {
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+.sidebar-search-input {
+    border: none;
+    background: transparent;
+    font-size: 13px;
+    color: #1e1b4b;
+    outline: none;
+    width: 100%;
+}
+
+.sidebar-search-input::placeholder {
+    color: #cbd5e1;
 }
 
 .nav-list {
     list-style: none;
     padding: 0;
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .nav-item {
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    padding: 10px 12px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #4b5563;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-bottom: 4px;
-    transition: background-color 0.2s, color 0.2s;
+    gap: 12px;
+    transition: all 0.2s;
 }
 
 .nav-item:hover {
-    background-color: #f9fafb;
-    color: #111827;
+    background: #f8fafc;
+    color: #1e1b4b;
 }
 
 .nav-item.active {
-    background-color: #f3f4ff;
+    background: #f1f5f9;
     color: #5542f6;
 }
 
 .item-dot {
     width: 6px;
     height: 6px;
+    background: #5542f6;
     border-radius: 50%;
-    background-color: #5542f6;
-    margin-right: 12px;
 }
 
 .item-dot.gray {
-    background-color: #d1d5db;
+    background: #cbd5e1;
 }
 
 .item-count {
     margin-left: auto;
     font-size: 12px;
-    color: #9ca3af;
+    color: #94a3b8;
 }
 
 .nav-icon {
-    margin-right: 12px;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .sidebar-footer {
-    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .credits-widget {
-    background-color: #f9fafb;
-    border-radius: 8px;
-    padding: 12px;
-    margin-bottom: 24px;
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 12px;
 }
 
 .credits-header {
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e1b4b;
+    margin-bottom: 12px;
 }
 
 .credits-bar {
     height: 6px;
-    background-color: #e5e7eb;
-    border-radius: 3px;
+    background: #e2e8f0;
+    border-radius: 100px;
     overflow: hidden;
 }
 
 .credits-progress {
     height: 100%;
-    background-color: #5542f6;
+    background: #5542f6;
+    border-radius: 100px;
 }
 
 .settings-link {
@@ -159,12 +194,12 @@
     align-items: center;
     gap: 12px;
     font-size: 14px;
-    font-weight: 500;
-    color: #4b5563;
+    font-weight: 700;
+    color: #64748b;
     cursor: pointer;
-    padding-left: 8px;
+    padding: 8px 12px;
 }
 
 .settings-link:hover {
-    color: #111827;
+    color: #1e1b4b;
 }

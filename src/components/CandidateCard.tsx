@@ -46,6 +46,20 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
                 </div>
                 <div className="card-actions">
                     <button
+                        className="btn-action-sm like"
+                        onClick={(e) => { e.stopPropagation(); onLike?.(); }}
+                        title="Like"
+                    >
+                        👍
+                    </button>
+                    <button
+                        className="btn-action-sm dislike"
+                        onClick={(e) => { e.stopPropagation(); onDislike?.(); }}
+                        title="Dislike"
+                    >
+                        👎
+                    </button>
+                    <button
                         className={`btn-heart ${candidate.is_shortlisted ? 'active' : ''}`}
                         onClick={(e) => {
                             e.stopPropagation();
@@ -61,13 +75,15 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
             </div>
 
             <div className="card-stats">
-                <div className="stat-box match-score">
-                    <span className="stat-value">{candidate.match_percent}%</span>
-                    <span className="stat-label">MATCH SCORE</span>
-                </div>
-                <div className="stat-box current-comp">
-                    <span className="stat-value">{candidate.company || 'N/A'}</span>
-                    <span className="stat-label">CURRENT</span>
+                <div className="stat-row">
+                    <div className="match-score-badge">
+                        <span className="match-val">{candidate.match_percent}%</span>
+                        <span className="match-lbl">MATCH SCORE</span>
+                    </div>
+                    <div className="company-badge">
+                        <span className="comp-val">{candidate.company || 'N/A'}</span>
+                        <span className="comp-lbl">CURRENT</span>
+                    </div>
                 </div>
             </div>
 
@@ -78,11 +94,11 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
             </div>
 
             {isUnlocked && (
-                <div className="contact-info">
-                    <div className="contact-item">
+                <div className="contact-info-strip">
+                    <div className="contact-line">
                         <span className="icon">✉️</span> {candidate.email}
                     </div>
-                    <div className="contact-item">
+                    <div className="contact-line">
                         <span className="icon">📞</span> +1 (555) 012-3456
                     </div>
                 </div>
@@ -90,8 +106,8 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
 
             <div className="card-footer">
                 <div className="social-links">
-                    <span className="social-icon linkedin">in</span>
-                    <span className="social-icon paper">📄</span>
+                    <span className="social-icon">in</span>
+                    <span className="social-icon">🐙</span>
                 </div>
                 <button className="btn-view-profile">
                     View Profile →
