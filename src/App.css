@@ -12,7 +12,10 @@
 
 /* Sidebar default width compensation from Sidebar.css usually */
 .search-page-content {
-  /* transition: margin-left 0.3s ease; */
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {

@@ -156,10 +156,10 @@ const SearchPage: React.FC<SearchPageProps> = ({ credits, onUpdateCredits, hideS
         setIsSearching(true);
         setCandidates([]);
         setStages([
-            { name: 'Fetch profiles', status: 'pending' },
-            { name: 'Semantic search and LLM match', status: 'pending' },
-            { name: 'Ranking and scoring', status: 'pending' },
-            { name: 'Preparing insights', status: 'pending' },
+            { name: 'Fetching profile data from multiple sources', status: 'pending' },
+            { name: 'Running semantic search and LLM matching', status: 'pending' },
+            { name: 'Ranking candidates using weighted scoring', status: 'pending' },
+            { name: 'Preparing insights and match list', status: 'pending' },
         ]);
 
         try {
@@ -242,27 +242,29 @@ const SearchPage: React.FC<SearchPageProps> = ({ credits, onUpdateCredits, hideS
 
     const content = (
         <>
-            {/* Show Header only if NOT searching */}
-            {!isSearching && (
-                <header className="page-header">
-                    <div className="nav-left">
-                        <div className="nav-icon-wrapper">
-                            <span className="logo-square"></span>
-                        </div>
-                        <div className="nav-profile-tag">
-                            Frontend Lead
-                        </div>
+            <main className="search-main-container">
+                <header className="dashboard-content-header">
+                    <div className="header-left">
+                        <h1 className="content-title">New AI Search</h1>
+                        <span className="badge-active">Active</span>
                     </div>
-                    <div className="nav-right">
-                        <div className="credit-pill">
-                            <span className="flash-icon">⚡</span>
-                            <span className="credit-count">{credits !== null ? credits : '-'} Credits</span>
+                    <div className="header-right">
+                        <div className="toggle-tabs">
+                            <button
+                                className={`toggle-tab ${activeTab === 'candidates' ? 'active' : ''}`}
+                                onClick={() => setActiveTab('candidates')}
+                            >
+                                Matches
+                            </button>
+                            <button
+                                className={`toggle-tab ${activeTab === 'shortlist' ? 'active' : ''}`}
+                                onClick={() => setActiveTab('shortlist')}
+                            >
+                                Shortlisted
+                            </button>
                         </div>
                     </div>
                 </header>
-            )}
-
-            <main className="search-main-container">
                 {activeTab === 'candidates' && !isSearching && candidates.length === 0 && (
                     <div className="initial-search-view">
                         <div className="search-hero">

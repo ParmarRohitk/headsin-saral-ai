@@ -11,7 +11,7 @@ const Sidebar: React.FC<SidebarProps> = ({ credits, activePage, onNavigate }) =>
     return (
         <aside className="sidebar">
             <div className="sidebar-logo">
-                <span className="logo-icon">🟣</span>
+                <div className="logo-icon">■</div>
                 <span className="logo-text">SARAL</span>
             </div>
 
@@ -22,6 +22,10 @@ const Sidebar: React.FC<SidebarProps> = ({ credits, activePage, onNavigate }) =>
             <nav className="sidebar-nav">
                 <div className="nav-section">
                     <h4 className="section-title">PROJECTS & HISTORY</h4>
+                    <div className="nav-search-box">
+                        <span className="search-icon">🔍</span>
+                        <input type="text" placeholder="Filter projects..." className="sidebar-search-input" />
+                    </div>
                     <ul className="nav-list">
                         <li
                             className={`nav-item ${activePage === 'search' ? 'active' : ''}`}
@@ -36,6 +40,11 @@ const Sidebar: React.FC<SidebarProps> = ({ credits, activePage, onNavigate }) =>
                             Frontend Lead
                             <span className="item-count">12</span>
                         </li>
+                        <li className="nav-item">
+                            <span className="item-dot gray"></span>
+                            Product Designer
+                            <span className="item-count">8</span>
+                        </li>
                     </ul>
                 </div>
 
@@ -46,10 +55,10 @@ const Sidebar: React.FC<SidebarProps> = ({ credits, activePage, onNavigate }) =>
                             className={`nav-item ${activePage === 'campaigns' ? 'active' : ''}`}
                             onClick={() => onNavigate('campaigns')}
                         >
-                            <span className="nav-icon">📢</span> Sequences
+                            <span className="nav-icon">🧭</span> Sequences
                         </li>
                         <li className="nav-item">
-                            <span className="nav-icon">💳</span> Billing
+                            <span className="nav-icon">📊</span> Billing
                         </li>
                         <li className="nav-item">
                             <span className="nav-icon">⚙️</span> Settings
