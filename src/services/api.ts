@@ -77,8 +77,8 @@ export const campaignApi = {
         const response = await api.get(`/campaigns/${id}/analytics`);
         return response.data;
     },
-    create: async (name: string, type: 'email' | 'linkedin') => {
-        const response = await api.post('/campaigns', { name, type });
+    create: async (name: string, type: 'email' | 'linkedin', steps?: any[]) => {
+        const response = await api.post('/campaigns', { name, type, steps });
         return response.data;
     }
 };

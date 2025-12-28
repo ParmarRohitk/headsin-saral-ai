@@ -17,7 +17,7 @@ function App() {
 
 function AppContent({ isAppMode, setIsAppMode }: { isAppMode: boolean, setIsAppMode: (v: boolean) => void }) {
     const [currentPage, setCurrentPage] = useState<'search' | 'campaigns'>('search');
-    const [credits, setCredits] = useState(485);
+    const [credits, setCredits] = useState<number | null>(null);
     const [sidebarVisible, setSidebarVisible] = useState(false);
 
     const handleStart = () => {
@@ -34,7 +34,7 @@ function AppContent({ isAppMode, setIsAppMode }: { isAppMode: boolean, setIsAppM
         <div className="search-page-wrapper">
             {showSidebar && (
                 <Sidebar
-                    credits={credits}
+                    credits={credits || 0}
                     activePage={currentPage}
                     onNavigate={(page: 'search' | 'campaigns') => setCurrentPage(page)}
                 />
@@ -43,6 +43,7 @@ function AppContent({ isAppMode, setIsAppMode }: { isAppMode: boolean, setIsAppM
             <div className={`search-page-content ${!showSidebar ? 'full-width' : ''}`}>
                 {currentPage === 'search' ? (
                     <SearchPage
+                        credits={credits}
                         onUpdateCredits={setCredits}
                         hideSidebar={!showSidebar}
                         onSidebarVisibilityChange={setSidebarVisible}
