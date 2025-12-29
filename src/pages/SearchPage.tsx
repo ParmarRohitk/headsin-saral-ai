@@ -267,9 +267,23 @@ const SearchPage: React.FC<SearchPageProps> = ({ credits, onUpdateCredits, hideS
                 </header>
                 {activeTab === 'candidates' && !isSearching && candidates.length === 0 && (
                     <div className="initial-search-view">
+                        <div className="search-top-nav">
+                            <div className="nav-left">
+                                <div className="logo-box">
+                                    <div className="logo-inner"></div>
+                                </div>
+                                <span className="project-tag">Frontend Lead</span>
+                            </div>
+                            <div className="nav-right">
+                                <div className="credits-pill-nav">
+                                    <span className="lightning-icon">⚡</span>
+                                    <span className="credits-val">{credits || 0} Credits</span>
+                                </div>
+                            </div>
+                        </div>
+
                         <div className="search-hero">
                             <div className="ai-badge">
-                                <span className="badge-icon">🚀</span>
                                 AI-Powered Sourcing
                             </div>
                             <h1 className="search-title">Instant talent clarity.</h1>
