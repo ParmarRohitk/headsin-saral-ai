@@ -14,9 +14,10 @@ interface SearchPageProps {
     hideSidebar?: boolean;
     onSearchStateChange?: (isSearching: boolean) => void;
     onSidebarVisibilityChange?: (isVisible: boolean) => void;
+    onSearchComplete?: (searchId: number) => void;
 }
 
-const SearchPage: React.FC<SearchPageProps> = ({ credits, onUpdateCredits, hideSidebar, onSearchStateChange, onSidebarVisibilityChange }) => {
+const SearchPage: React.FC<SearchPageProps> = ({ credits, onUpdateCredits, hideSidebar, onSearchStateChange, onSidebarVisibilityChange, onSearchComplete }) => {
     const [isSearching, setIsSearching] = useState(false);
     const [searchId, setSearchId] = useState<number | null>(null);
     const [stages, setStages] = useState<SearchStage[]>([]);
@@ -126,11 +127,14 @@ const SearchPage: React.FC<SearchPageProps> = ({ credits, onUpdateCredits, hideS
                     if (allCompleted) {
                         clearInterval(pollInterval);
                         setIsSearching(false);
-                        fetchResults(searchId, 1);
                         // Refresh credits after search
                         const credRes = await creditApi.getUserCredits();
                         if (credRes.success && onUpdateCredits) {
                             onUpdateCredits(credRes.data.available_credits);
+                        }
+                        // Navigate to results page
+                        if (onSearchComplete) {
+                            onSearchComplete(searchId);
                         }
                     }
                 }

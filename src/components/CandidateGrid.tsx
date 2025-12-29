@@ -1,3 +1,4 @@
+import React from 'react';
 import CandidateCard from './CandidateCard';
 import { Candidate } from '../types/candidate';
 import Skeleton from './Skeleton';
