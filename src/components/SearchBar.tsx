@@ -28,21 +28,23 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, isLoading = false }) =>
     return (
         <>
             <div className="search-bar-container">
-                <div className="search-tabs">
-                    <button
-                        className={`search-tab ${activeTab === 'manual' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('manual')}
-                    >
-                        <span className="tab-icon">🔍</span>
-                        Manual Search
-                    </button>
-                    <button
-                        className={`search-tab ${activeTab === 'jd' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('jd')}
-                    >
-                        <span className="tab-icon">📄</span>
-                        Search by JD
-                    </button>
+                <div className="tabs-header">
+                    <div className="tabs-pill">
+                        <button
+                            className={`search-tab ${activeTab === 'manual' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('manual')}
+                        >
+                            <span className="tab-icon">🔍</span>
+                            Manual Search
+                        </button>
+                        <button
+                            className={`search-tab ${activeTab === 'jd' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('jd')}
+                        >
+                            <span className="tab-icon">📄</span>
+                            Search by JD
+                        </button>
+                    </div>
                 </div>
 
                 <div className="search-content">

@@ -1,251 +1,175 @@
 .search-bar-container {
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 800px;
   background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
   overflow: hidden;
+  border: 1px solid #f1f5f9;
 }
 
-.search-tabs {
+.tabs-header {
+  background: #f8fafc;
+  padding: 8px;
   display: flex;
-  border-bottom: 1px solid #e5e7eb;
-  background: #fafafa;
+  justify-content: center;
+}
+
+.tabs-pill {
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: 12px;
+  display: flex;
+  gap: 4px;
 }
 
 .search-tab {
-  flex: 1;
-  padding: 1rem 2rem;
+  padding: 8px 24px;
   background: transparent;
   border: none;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #9ca3af;
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
   cursor: pointer;
   transition: all 0.2s;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-bottom: 3px solid transparent;
+  gap: 8px;
+  border-radius: 8px;
 }
 
 .search-tab.active {
-  color: #5D4FE9;
-  border-bottom-color: #5D4FE9;
+  color: #1e1b4b;
   background: #ffffff;
-}
-
-.search-tab:hover:not(.active) {
-  background: #f3f4f6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .tab-icon {
-  font-size: 1.125rem;
+  font-size: 14px;
 }
 
 .search-content {
-  padding: 2.5rem;
+  padding: 32px;
 }
 
 .search-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 24px;
 }
 
 .search-textarea {
   width: 100%;
-  padding: 1.25rem;
-  font-size: 1rem;
-  font-family: inherit;
-  border: 2px solid #e5e7eb;
-  border-radius: 12px;
-  resize: vertical;
-  transition: border-color 0.2s;
+  border: none;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #1e1b4b;
+  background: transparent;
+  resize: none;
+  outline: none;
   line-height: 1.6;
   min-height: 100px;
 }
 
-.search-textarea:focus {
-  outline: none;
-  border-color: #5D4FE9;
-}
-
 .search-textarea::placeholder {
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 
 .btn-search {
   align-self: flex-end;
-  padding: 0.875rem 2rem;
-  background: #5D4FE9;
+  padding: 12px 32px;
+  background: #a855f7;
+  /* Lavender/Purple per image */
   color: white;
   border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 600;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.3s;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.2);
 }
 
 .btn-search:hover:not(:disabled) {
-  background: #4D3FD9;
+  background: #9333ea;
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(93, 79, 233, 0.3);
 }
 
 .btn-search:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.btn-icon {
-  font-size: 1.125rem;
-}
-
-.jd-upload-area {
-  padding: 3rem 2rem;
-  text-align: center;
-  border: 2px dashed #d1d5db;
-  border-radius: 12px;
-  background: #fafafa;
-  transition: all 0.3s;
-}
-
-.jd-upload-area:hover {
-  border-color: #5D4FE9;
-  background: #f5f3ff;
-}
-
-.upload-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.jd-upload-area h3 {
-  font-size: 1.25rem;
-  color: #1f2937;
-  margin: 0 0 0.5rem 0;
-}
-
-.upload-subtitle {
-  color: #6b7280;
-  margin: 0 0 2rem 0;
-  font-size: 0.9375rem;
-}
-
-.upload-actions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.btn-browse,
-.btn-parse {
-  padding: 0.75rem 1.5rem;
-  border-radius: 10px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-size: 0.9375rem;
-}
-
-.btn-browse {
-  background: white;
-  border: 2px solid #e5e7eb;
-  color: #374151;
-}
-
-.btn-browse:hover {
-  border-color: #d1d5db;
-  background: #f9fafb;
-}
-
-.btn-parse {
-  background: #5D4FE9;
-  border: none;
-  color: white;
-}
-
-.btn-parse:hover:not(:disabled) {
-  background: #4D3FD9;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(93, 79, 233, 0.3);
-}
-
-.btn-parse:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-/* Popular Searches - Outside the card */
-.popular-searches-section {
-  max-width: 900px;
-  margin: 2.5rem auto 0;
+.jd-upload-area {
+  padding: 40px;
   text-align: center;
+  border: 2px dashed #e2e8f0;
+  border-radius: 16px;
+  background: #f8fafc;
+}
+
+/* Popular Searches */
+.popular-searches-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  position: relative;
+}
+
+.popular-searches-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: #f1f5f9;
 }
 
 .popular-title {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #9ca3af;
+  font-size: 11px;
+  font-weight: 800;
+  color: #94a3b8;
   letter-spacing: 0.1em;
-  margin: 0 0 1.5rem 0;
+  margin-bottom: 24px;
 }
 
 .popular-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  max-width: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .popular-chip {
-  padding: 1rem 1.5rem;
+  padding: 10px 20px;
   background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 0.875rem;
-  color: #6b7280;
+  border: 1px solid #f1f5f9;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
-.popular-chip:hover:not(:disabled) {
-  border-color: #5D4FE9;
-  background: #f5f3ff;
-  color: #5D4FE9;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(93, 79, 233, 0.15);
-}
-
-.popular-chip:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.popular-chip:hover {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  color: #1e1b4b;
 }
 
 @media (max-width: 768px) {
-  .popular-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .search-tab {
-    padding: 0.875rem 1rem;
-    font-size: 0.875rem;
-  }
-
-  .upload-actions {
-    flex-direction: column;
-  }
-
-  .search-content {
-    padding: 1.5rem;
+  .search-title {
+    font-size: 40px;
   }
 }
